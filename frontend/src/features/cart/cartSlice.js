@@ -10,6 +10,7 @@ const cartSlice = createSlice({
     shippingAddress: localStorage.getItem("shippingAddress")
       ? JSON.parse(localStorage.getItem("shippingAddress"))
       : {},
+    paymentMethod: "PayPal",
   },
   reducers: {
     removeFromCart: (state, action) => {
@@ -24,6 +25,9 @@ const cartSlice = createSlice({
         "shippingAddress",
         JSON.stringify(state.shippingAddress)
       );
+    },
+    savePaymentMethod: (state, action) => {
+      state.paymentMethod = action.payload;
     },
   },
   extraReducers: {
@@ -44,6 +48,7 @@ const cartSlice = createSlice({
 
 const { reducer, actions } = cartSlice;
 
-export const { removeFromCart, saveShippingAddress } = actions;
+export const { removeFromCart, saveShippingAddress, savePaymentMethod } =
+  actions;
 
 export default reducer;
