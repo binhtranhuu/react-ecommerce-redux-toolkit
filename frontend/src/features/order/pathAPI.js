@@ -16,3 +16,18 @@ export const createOrder = createAsyncThunk(
     return data.order;
   }
 );
+
+export const detailsOrder = createAsyncThunk(
+  "detailsOrder",
+  async (orderId, { getState }) => {
+    const {
+      userSignin: { userInfo },
+    } = getState();
+
+    const { data } = await Axios.get(`/api/orders/${orderId}`, {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+
+    return data;
+  }
+);
