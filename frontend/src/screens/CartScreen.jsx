@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import MessageBox from "../components/MessageBox";
 import { addToCart } from "../features/cart/pathAPI";
+import { removeFromCart } from "../features/cart/cartSlice";
 
 export default function CartScreen(props) {
   const productId = props.match.params.id;
@@ -18,8 +19,13 @@ export default function CartScreen(props) {
     }
   }, [dispatch, productId, qty]);
 
+  const changeQtyHandler = (productId, qty) => {
+    dispatch(addToCart({ productId, qty }));
+  };
+
   const removeFromCartHandler = (id) => {
     // delete action
+    dispatch(removeFromCart(id));
   };
 
   const checkoutHandler = () => {
@@ -53,9 +59,7 @@ export default function CartScreen(props) {
                     <select
                       value={item.qty}
                       onChange={(e) =>
-                        dispatch(
-                          addToCart(item.product, Number(e.target.value))
-                        )
+                        changeQtyHandler(item.product, Number(e.target.value))
                       }
                     >
                       {[...Array(item.countInStock).keys()].map((x) => (
