@@ -6,6 +6,7 @@ import signinSlice from "../features/user/signinSlice";
 import registerSlice from "../features/user/registerSlice";
 import orderCreateSlice from "../features/order/orderCreateSlice";
 import detailsOrderSlice from "../features/order/detailsOrderSlice";
+import payOrderSlice from "../features/order/payOrderSlice";
 
 const rootReducer = {
   productList: listProductsSlice,
@@ -15,6 +16,7 @@ const rootReducer = {
   userRegister: registerSlice,
   orderCreate: orderCreateSlice,
   orderDetails: detailsOrderSlice,
+  orderPay: payOrderSlice,
 };
 
 const store = configureStore({

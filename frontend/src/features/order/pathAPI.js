@@ -31,3 +31,18 @@ export const detailsOrder = createAsyncThunk(
     return data;
   }
 );
+
+export const payOrder = createAsyncThunk(
+  "payOrder",
+  async ({ order, paymentResult }, { getState }) => {
+    const {
+      userSignin: { userInfo },
+    } = getState();
+
+    const { data } = Axios.put(`/api/orders/${order._id}/pay`, paymentResult, {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+
+    return data;
+  }
+);
