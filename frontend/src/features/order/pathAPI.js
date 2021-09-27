@@ -1,3 +1,4 @@
+/* eslint-disable no-empty-pattern */
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import Axios from "axios";
 
@@ -41,6 +42,22 @@ export const payOrder = createAsyncThunk(
 
     const { data } = Axios.put(`/api/orders/${order._id}/pay`, paymentResult, {
       headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+
+    return data;
+  }
+);
+
+export const listOrderMine = createAsyncThunk(
+  "listOrderMine",
+  async ({}, { getState }) => {
+    const {
+      userSignin: { userInfo },
+    } = getState();
+    const { data } = await Axios.get("/api/orders/mine", {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
     });
 
     return data;
