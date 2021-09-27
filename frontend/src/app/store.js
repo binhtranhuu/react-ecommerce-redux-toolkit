@@ -4,6 +4,7 @@ import productDetailsSlice from "../features/product/productDetailsSlice";
 import cartSlice from "../features/cart/cartSlice";
 import signinSlice from "../features/user/signinSlice";
 import registerSlice from "../features/user/registerSlice";
+import orderCreateSlice from "../features/order/orderCreateSlice";
 
 const rootReducer = {
   productList: listProductsSlice,
@@ -11,6 +12,7 @@ const rootReducer = {
   cart: cartSlice,
   userSignin: signinSlice,
   userRegister: registerSlice,
+  orderCreate: orderCreateSlice,
 };
 
 const store = configureStore({
